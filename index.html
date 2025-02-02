@@ -1,1 +1,25 @@
-Websocket example
+<html>
+  <head></head>
+  <body></body>
+  <script>
+    // add script tag for websocket
+    let ws;
+    // set the protocol for the websocket connection.
+    // We want it to work both in https and http
+    // choose the protocol pullin it from window.location object
+    // wss means websocket secure
+    const proto = window.location.protocol === "https:" ? "wss" : "ws";
+
+    // create the websocket, which is a built-in object in the window, in the dom
+    // we need to tell where the websocket is connecting to?
+    // we will just connect it at the route.
+    // (window.location.host will give us our domain name back)
+    ws = new WebSocket(`${proto}://${window.location.host}`);
+
+    // make the websocket to respond to any messages we get from the server
+
+    ws.onmessage = (event) => {
+      console.log(event.data);
+    };
+  </script>
+</html>
